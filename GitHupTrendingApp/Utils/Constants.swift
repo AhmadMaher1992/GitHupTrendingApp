@@ -36,7 +36,7 @@ struct AppColors {
     static let cloud_Color = #colorLiteral(red: 0.9401598573, green: 0.9529649615, blue: 0.9562856555, alpha: 1)
     static let lynx_Color = #colorLiteral(red: 0.9687532783, green: 0.9722985625, blue: 0.9844920039, alpha: 1)
     static let ofWhite_Color = #colorLiteral(red: 0.9936184287, green: 0.9995779395, blue: 0.990658462, alpha: 1)
-    static let shadow_Steel_Color = #colorLiteral(red: 0.3647058824, green: 0.3647058824, blue: 0.3647058824, alpha: 1)
+    static let shadow_Steel_Color = #colorLiteral(red: 0.03719805554, green: 0.1981460452, blue: 0.3412467837, alpha: 1)
     static let dorn_Yellow_Color = #colorLiteral(red: 1, green: 0.9463161826, blue: 0, alpha: 1)
     static let dark1_Color = #colorLiteral(red: 0.08909202367, green: 0.2578303516, blue: 0.4366588593, alpha: 1)
     static let dark2_Color = #colorLiteral(red: 0.03719805554, green: 0.1981460452, blue: 0.3412467837, alpha: 1)
