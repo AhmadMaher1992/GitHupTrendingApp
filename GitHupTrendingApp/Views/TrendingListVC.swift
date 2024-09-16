@@ -306,7 +306,23 @@ extension TrendingListVC: UITableViewDataSource {
 //------------------------------------------
 extension TrendingListVC: UITableViewDelegate {
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Assuming you're inside the table view's didSelectRow method or some other action where you're presenting the view controller
+        let repository = viewModel.repositories[indexPath.row] // Get the repository object
+
+        // Instantiate GitRepoDetailsVC from the Main storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let detailVC = storyboard.instantiateViewController(withIdentifier: "GitRepoDetailsVC") as? GitRepoDetailsVC {
+            
+            // Pass the repository object to the GitRepoDetailsVC
+            detailVC.repository = repository
+            
+            // Present the view controller modally
+            present(detailVC, animated: true, completion: nil)
+        }
+
+
+    }
     
 }
 extension TrendingListVC {

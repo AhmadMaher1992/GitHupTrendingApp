@@ -16,7 +16,7 @@ struct Storyboards {
 
 
 struct ViewControllerID {
-  
+    static let GitRepoDetailsVC =   "GitRepoDetailsVC"
 }
 
 
@@ -24,9 +24,10 @@ struct AppImages {
     static let filledStar = "filled_star"
     static let emptyStar = "empty_star"
     static let placeholder = "placeholder"
-    
     static let noInternet_Img =  "cloud-computing"
     static let noSearchResult_Img =  "no-results"
+    static let fork_Img = "fork"
+    static let createdAt_Img =  "ic_calanderSmall"
    
 }
 
