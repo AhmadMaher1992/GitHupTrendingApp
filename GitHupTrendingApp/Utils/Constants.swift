@@ -24,6 +24,10 @@ struct AppImages {
     static let filledStar = "filled_star"
     static let emptyStar = "empty_star"
     static let placeholder = "placeholder"
+    
+    static let noInternet_Img =  "cloud-computing"
+    static let noSearchResult_Img =  "no-results"
+   
 }
 
 struct AppColors {
@@ -63,4 +67,12 @@ struct AppColors {
 
 struct Identifiers {
     static let RepositoryCell = "RepositoryCell"
+}
+
+
+struct TMText
+{
+    static let No_Data_Found = "No data found"
+    static let No_Search_Result = "No search result"
+    
 }

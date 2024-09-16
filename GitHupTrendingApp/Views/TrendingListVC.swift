@@ -69,7 +69,7 @@ class TrendingListVC: UIViewController {
                 self.tableView.reloadData()
             }
             .store(in: &viewModel.cancellables)
-
+        
         viewModel.$errorMessage
             .receive(on: DispatchQueue.main)
             .sink { [weak self] errorMessage in
@@ -86,11 +86,8 @@ class TrendingListVC: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
                 guard let self = self else { return }
-                if isLoading {
-                    self.showHUD(true) // Show HUD during initial load and when switching segments
-                } else {
-                    self.showHUD(false)
-                }
+                self.showHUD(isLoading) // Show HUD during initial load and when switching segments
+
             }
             .store(in: &viewModel.cancellables)
         
@@ -105,7 +102,7 @@ class TrendingListVC: UIViewController {
                 }
             }
             .store(in: &viewModel.cancellables)
-
+        
         fetchRepositories() // Initial fetch
     }
 
@@ -262,7 +259,8 @@ class TrendingListVC: UIViewController {
 
     private func fetchRepositories(timeframe: Timeframe? = nil) {
         let selectedTimeframe = timeframe ?? .day
-        viewModel.fetchRepositories(timeframe: selectedTimeframe) {
+        print("DEBUG:☑️ URL String ☑️ \(selectedTimeframe)")
+        viewModel.fetchRepositories(timeframe: selectedTimeframe, searchQuery: searchController.searchBar.text) {
             DispatchQueue.main.async {
                 self.refreshControl.endRefreshing() // Ensure UI updates on the main thread.
                 self.spinner.stopAnimating()
@@ -271,8 +269,7 @@ class TrendingListVC: UIViewController {
     }
 
     @objc func favoritesButtonTapped() {
-        print("Favorites button tapped")
-        
+        print("DEBUG:☑️ Favorites button tapped ☑️")
         
     }
     
@@ -285,6 +282,7 @@ class TrendingListVC: UIViewController {
 extension TrendingListVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return viewModel.repositories.count
     }
     
@@ -325,9 +323,10 @@ extension TrendingListVC {
 extension TrendingListVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-            // Implement search logic here
-            // For example, filter the repositories based on searchController.searchBar.text
-        }
+        // Implement search logic here
+        resetPagination() // Reset pagination before performing the search
+        fetchRepositories(timeframe: timeframe) // Fetch repositories based on the search query
+    }
     
     
     

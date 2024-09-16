@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 
+
 class TrendingListViewModel {
     
     @Published var repositories: [GithupRepo] = []
@@ -20,9 +21,12 @@ class TrendingListViewModel {
     var cancellables = Set<AnyCancellable>()
     var canLoadMorePages = true
     var isInitialLoad: Bool = true // Flag to track if it's the first load or segment switch
+    var searchQuery: String = "" // Search query for filtering repositories
+    
     
     // Fetch repositories and show HUD based on the load type (initial load or pagination)
-    func fetchRepositories(timeframe: Timeframe, completion: @escaping () -> Void) {
+    
+    func fetchRepositories(timeframe: Timeframe, searchQuery: String? = nil, completion: @escaping () -> Void) {
         guard !isLoading && canLoadMorePages else { return }
         
         if isInitialLoad {
@@ -31,16 +35,20 @@ class TrendingListViewModel {
             isPaginating = true // Show bottom spinner during pagination
         }
         
-        let urlString: String
-        switch timeframe {
-        case .day:
-            urlString = "https://api.github.com/search/repositories?q=created:>\(getDate(days: -1))&sort=stars&order=desc&page=\(currentPage)"
-        case .week:
-            urlString = "https://api.github.com/search/repositories?q=created:>\(getDate(days: -7))&sort=stars&order=desc&page=\(currentPage)"
-        case .month:
-            urlString = "https://api.github.com/search/repositories?q=created:>\(getDate(days: -30))&sort=stars&order=desc&page=\(currentPage)"
+        // Build the base query combining searchQuery and timeframe filter
+        var baseQuery: String
+        if let query = searchQuery, !query.isEmpty {
+            // If there's a search query, combine it with the timeframe filter
+            baseQuery = "q=\(query)+created:>\(getDate(days: timeframeDays(for: timeframe)))"
+        } else {
+            // Otherwise, just use the timeframe filter
+            baseQuery = "q=created:>\(getDate(days: timeframeDays(for: timeframe)))"
         }
+
+        // Construct the full URL string with sorting and pagination
+        let urlString = "https://api.github.com/search/repositories?\(baseQuery)&sort=stars&order=desc&page=\(currentPage)"
         print("DEBUG:☑️ URL String ☑️ \(urlString) ☑️")
+        
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
@@ -77,11 +85,24 @@ class TrendingListViewModel {
             })
             .store(in: &cancellables)
     }
+
+
     
     private func getDate(days: Int) -> String {
         let date = Calendar.current.date(byAdding: .day, value: days, to: Date())!
         let formatter = ISO8601DateFormatter()
         return formatter.string(from: date)
+    }
+    // Helper to get the number of days based on the timeframe
+    private func timeframeDays(for timeframe: Timeframe) -> Int {
+        switch timeframe {
+        case .day:
+            return -1
+        case .week:
+            return -7
+        case .month:
+            return -30
+        }
     }
 }
 

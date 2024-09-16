@@ -23,4 +23,16 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    //for table view
+    func showNoDataViewOnTableView(tableview: UITableView, forItemsCount count: Int, title: String, details: String = "", type: NoDataViewType = .standardType, backGroundColor: UIColor) {
+        if count == 0 {
+            let noDataView  = NoDataView(frame: CGRect(x: 0, y: 0, width: tableview.bounds.size.width, height: tableview.bounds.size.height))
+            noDataView.setViewDetails(title, details, type, backGroundColor)
+            tableview.backgroundView  = noDataView
+            tableview.separatorStyle  = .none
+        } else {
+            tableview.backgroundView = nil
+        }
+    }
 }
