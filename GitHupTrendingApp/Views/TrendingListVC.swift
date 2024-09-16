@@ -57,6 +57,7 @@ class TrendingListVC: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupSearchController()
+        setupTableView()
     }
     
     
@@ -160,6 +161,13 @@ class TrendingListVC: UIViewController {
         navigationItem.titleView?.layoutIfNeeded()
     }
 
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerCell(cellClass: RepositoryCell.self)
+        tableView.estimatedRowHeight = 100  // Provide an estimated row height
+        tableView.rowHeight = UITableView.automaticDimension
+    }
 
     @objc func favoritesButtonTapped() {
         print("Favorites button tapped")
@@ -170,6 +178,36 @@ class TrendingListVC: UIViewController {
     
 }
 
+//------------------------------------------
+// MARK: - UITableViewDataSource
+//------------------------------------------
+extension TrendingListVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
+        let cell: RepositoryCell = tableView.dequeueCell()
+        return cell
+    }
+    
+    
+    
+    
+}
+
+//------------------------------------------
+// MARK: - UITableViewDelegate
+//------------------------------------------
+extension TrendingListVC: UITableViewDelegate {
+    
+    
+    
+}
 
 //------------------------------------------
 // MARK: - UISearchResultsUpdating
