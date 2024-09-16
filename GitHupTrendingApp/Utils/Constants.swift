@@ -23,7 +23,7 @@ struct ViewControllerID {
 struct AppImages {
     static let filledStar = "filled_star"
     static let emptyStar = "empty_star"
-    static let placeholder = "person.circle.fill"
+    static let placeholder = "placeholder"
 }
 
 struct AppColors {

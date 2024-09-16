@@ -40,14 +40,8 @@ class TrendingListVC: UIViewController {
         }
     }
     
-    
-    
-    //------------------------------------------
-    // MARK: -IBOutlets
-    //------------------------------------------
-    
-    
-    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+ 
     
     
     //------------------------------------------
@@ -58,6 +52,8 @@ class TrendingListVC: UIViewController {
         setupNavigationBar()
         setupSearchController()
         setupTableView()
+        setupRefreshControl()
+        dataBinding()
     }
     
     
@@ -65,6 +61,59 @@ class TrendingListVC: UIViewController {
     // MARK: - Helpers
     //------------------------------------------
     
+    func dataBinding() {
+        viewModel.$repositories
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+            }
+            .store(in: &viewModel.cancellables)
+
+        viewModel.$errorMessage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] errorMessage in
+                guard let self = self else { return }
+                if let message = errorMessage {
+                    self.showError(message: message)
+                }
+                self.refreshControl.endRefreshing()
+                self.spinner.stopAnimating()
+            }
+            .store(in: &viewModel.cancellables)
+        
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    self.showHUD(true) // Show HUD during initial load and when switching segments
+                } else {
+                    self.showHUD(false)
+                }
+            }
+            .store(in: &viewModel.cancellables)
+        
+        viewModel.$isPaginating
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isPaginating in
+                guard let self = self else { return }
+                if isPaginating {
+                    self.spinner.startAnimating() // Show spinner during pagination
+                } else {
+                    self.spinner.stopAnimating()
+                }
+            }
+            .store(in: &viewModel.cancellables)
+
+        fetchRepositories() // Initial fetch
+    }
+
+    
+   
+
+
+
     // handle segment actions
     
     @objc
@@ -78,7 +127,10 @@ class TrendingListVC: UIViewController {
         default:
             break
         }
-        
+        resetPagination() // Reset pagination before fetching new data
+        // Ensure the HUD is shown when switching segments
+            viewModel.isInitialLoad = true
+        fetchRepositories(timeframe: timeframe)
     }
     
     
@@ -168,6 +220,55 @@ class TrendingListVC: UIViewController {
         tableView.estimatedRowHeight = 100  // Provide an estimated row height
         tableView.rowHeight = UITableView.automaticDimension
     }
+   
+    
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc private func refreshData() {
+
+        resetPagination() // Reset pagination before fetching new data
+        fetchRepositories(timeframe: timeframe)
+    }
+    
+    // Function to reset pagination
+    private func resetPagination() {
+        viewModel.repositories.removeAll() // Clear current repositories
+        viewModel.currentPage = 1 // Reset page counter
+        viewModel.canLoadMorePages = true // Reset pagination flag
+        
+    }
+    
+    // Pagination logic
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.height
+        
+        if offsetY > contentHeight - frameHeight * 2, !viewModel.isPaginating {
+            // Load more repositories when reaching the bottom
+            viewModel.fetchRepositories(timeframe: timeframe) {
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing() // Ensure UI updates on the main thread
+                    self.spinner.stopAnimating()
+                }
+            }
+        }
+    }
+   
+
+    private func fetchRepositories(timeframe: Timeframe? = nil) {
+        let selectedTimeframe = timeframe ?? .day
+        viewModel.fetchRepositories(timeframe: selectedTimeframe) {
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing() // Ensure UI updates on the main thread.
+                self.spinner.stopAnimating()
+            }
+        }
+    }
 
     @objc func favoritesButtonTapped() {
         print("Favorites button tapped")
@@ -184,7 +285,7 @@ class TrendingListVC: UIViewController {
 extension TrendingListVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.repositories.count
     }
     
     
@@ -192,6 +293,8 @@ extension TrendingListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell: RepositoryCell = tableView.dequeueCell()
+        let repository = viewModel.repositories[indexPath.row]
+        cell.configure(with: repository)
         return cell
     }
     
@@ -208,7 +311,14 @@ extension TrendingListVC: UITableViewDelegate {
     
     
 }
-
+extension TrendingListVC {
+    
+    private func showError(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+}
 //------------------------------------------
 // MARK: - UISearchResultsUpdating
 //------------------------------------------
