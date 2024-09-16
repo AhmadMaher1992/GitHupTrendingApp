@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import Combine
+
+class TrendingListViewModel {
+    
+    
+    
+    
+    
+    
+    
+}
