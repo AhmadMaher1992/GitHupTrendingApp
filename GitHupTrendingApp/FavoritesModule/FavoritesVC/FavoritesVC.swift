@@ -182,7 +182,18 @@ extension FavoritesVC: UITableViewDataSource {
 //------------------------------------------
 extension FavoritesVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Handle repository selection
+        
+        guard  let repository = isSearching() ? filteredFavorites[safe: indexPath.row] : favorites[safe: indexPath.row] else { return }
+        // Instantiate GitRepoDetailsVC from the Main storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let detailVC = storyboard.instantiateViewController(withIdentifier: "GitRepoDetailsVC") as? GitRepoDetailsVC {
+            
+            // Pass the repository object to the GitRepoDetailsVC
+            detailVC.repository = repository
+            
+            // Present the view controller modally
+            present(detailVC, animated: true, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
