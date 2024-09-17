@@ -75,5 +75,6 @@ struct TMText
 {
     static let No_Data_Found = "No data found"
     static let No_Search_Result = "No search result"
+    static let No_Favourites_Selected = "No Favourite Selected"
     
 }

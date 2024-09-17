@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A66564B2C98BE2F0068A793 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6656492C98BE2E0068A793 /* NoDataView.swift */; };
+		7A66564C2C98BE2F0068A793 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A66564A2C98BE2F0068A793 /* NoDataView.xib */; };
+		7A6656512C98D91D0068A793 /* GitRepoDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6656502C98D91D0068A793 /* GitRepoDetailsVC.swift */; };
+		7A6656532C98EBAA0068A793 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6656522C98EBAA0068A793 /* UILabel+Extensions.swift */; };
 		7AAFD50C2C97E72600E0D850 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFD50B2C97E72600E0D850 /* AppDelegate.swift */; };
 		7AAFD50E2C97E72600E0D850 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFD50D2C97E72600E0D850 /* SceneDelegate.swift */; };
 		7AAFD5102C97E72600E0D850 /* TrendingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAFD50F2C97E72600E0D850 /* TrendingListVC.swift */; };
@@ -25,10 +29,23 @@
 		7ADB02432C98802000CB4AF0 /* CustomSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB02422C98802000CB4AF0 /* CustomSegment.swift */; };
 		7ADB02452C9884F300CB4AF0 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB02442C9884F300CB4AF0 /* UINavigationBar+Extension.swift */; };
 		7ADB02472C989A2200CB4AF0 /* JGProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB02462C989A2200CB4AF0 /* JGProgressHUD+Extension.swift */; };
+		7AF402D52C99CE020064BEB1 /* ReachabilityManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF402D42C99CE020064BEB1 /* ReachabilityManagement.swift */; };
+		7AF402D72C99D87C0064BEB1 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF402D62C99D87C0064BEB1 /* BaseVC.swift */; };
+		7AF402DA2C99DEE10064BEB1 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF402D92C99DEE10064BEB1 /* NoInternetViewController.swift */; };
+		7AFD3F682C9905C3007B53C0 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD3F672C9905C3007B53C0 /* FavoritesManager.swift */; };
+		7AFD3F6C2C9909AD007B53C0 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD3F6A2C9909AD007B53C0 /* FavoritesVC.swift */; };
+		7AFD3F6D2C9909AD007B53C0 /* FavoritesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AFD3F6B2C9909AD007B53C0 /* FavoritesVC.xib */; };
+		7AFD3F712C9910FF007B53C0 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD3F702C9910FF007B53C0 /* Array+Extension.swift */; };
+		7AFD3F732C992388007B53C0 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD3F722C992388007B53C0 /* FavoritesViewModel.swift */; };
+		7AFD3F752C99241F007B53C0 /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD3F742C99241F007B53C0 /* UISearchBar+Extension.swift */; };
 		E1E3C07CCD2881F663F94C20 /* Pods_GitHupTrendingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B05B690768B05550687BE3 /* Pods_GitHupTrendingApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A6656492C98BE2E0068A793 /* NoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
+		7A66564A2C98BE2F0068A793 /* NoDataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoDataView.xib; sourceTree = "<group>"; };
+		7A6656502C98D91D0068A793 /* GitRepoDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitRepoDetailsVC.swift; sourceTree = "<group>"; };
+		7A6656522C98EBAA0068A793 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		7AAFD5082C97E72600E0D850 /* GitHupTrendingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHupTrendingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AAFD50B2C97E72600E0D850 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AAFD50D2C97E72600E0D850 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +66,15 @@
 		7ADB02422C98802000CB4AF0 /* CustomSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegment.swift; sourceTree = "<group>"; };
 		7ADB02442C9884F300CB4AF0 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		7ADB02462C989A2200CB4AF0 /* JGProgressHUD+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JGProgressHUD+Extension.swift"; sourceTree = "<group>"; };
+		7AF402D42C99CE020064BEB1 /* ReachabilityManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManagement.swift; sourceTree = "<group>"; };
+		7AF402D62C99D87C0064BEB1 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		7AF402D92C99DEE10064BEB1 /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
+		7AFD3F672C9905C3007B53C0 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		7AFD3F6A2C9909AD007B53C0 /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
+		7AFD3F6B2C9909AD007B53C0 /* FavoritesVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesVC.xib; sourceTree = "<group>"; };
+		7AFD3F702C9910FF007B53C0 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		7AFD3F722C992388007B53C0 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		7AFD3F742C99241F007B53C0 /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 		86A65CC800C71E28B014B02E /* Pods-GitHupTrendingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHupTrendingApp.release.xcconfig"; path = "Target Support Files/Pods-GitHupTrendingApp/Pods-GitHupTrendingApp.release.xcconfig"; sourceTree = "<group>"; };
 		ABE4DA3D5609182A74FEBA96 /* Pods-GitHupTrendingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHupTrendingApp.debug.xcconfig"; path = "Target Support Files/Pods-GitHupTrendingApp/Pods-GitHupTrendingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B6B05B690768B05550687BE3 /* Pods_GitHupTrendingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHupTrendingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A66564D2C98BE3B0068A793 /* NoDataView */ = {
+			isa = PBXGroup;
+			children = (
+				7A6656492C98BE2E0068A793 /* NoDataView.swift */,
+				7A66564A2C98BE2F0068A793 /* NoDataView.xib */,
+			);
+			path = NoDataView;
+			sourceTree = "<group>";
+		};
 		7AAFD4FF2C97E72600E0D850 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				7AAFD51F2C97E92B00E0D850 /* Delegates */,
+				7AFD3F692C990996007B53C0 /* FavoritesModule */,
+				7A66564D2C98BE3B0068A793 /* NoDataView */,
 				7AAFD5362C986E8A00E0D850 /* Utils */,
 				7AAFD52E2C97EFCE00E0D850 /* Cells */,
 				7AAFD5232C97E9C900E0D850 /* Manger */,
@@ -129,6 +166,10 @@
 				7ADB02422C98802000CB4AF0 /* CustomSegment.swift */,
 				7ADB02442C9884F300CB4AF0 /* UINavigationBar+Extension.swift */,
 				7ADB02462C989A2200CB4AF0 /* JGProgressHUD+Extension.swift */,
+				7A6656522C98EBAA0068A793 /* UILabel+Extensions.swift */,
+				7AFD3F702C9910FF007B53C0 /* Array+Extension.swift */,
+				7AFD3F742C99241F007B53C0 /* UISearchBar+Extension.swift */,
+				7AF402D62C99D87C0064BEB1 /* BaseVC.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -145,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				7AAFD5262C97EC1000E0D850 /* NetworkManger.swift */,
+				7AF402DB2C99DF210064BEB1 /* InternetConnectionManager */,
 			);
 			path = Manger;
 			sourceTree = "<group>";
@@ -153,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				7AAFD50F2C97E72600E0D850 /* TrendingListVC.swift */,
+				7A6656502C98D91D0068A793 /* GitRepoDetailsVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +231,50 @@
 				7AAFD5372C986E9900E0D850 /* Constants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		7AF402DB2C99DF210064BEB1 /* InternetConnectionManager */ = {
+			isa = PBXGroup;
+			children = (
+				7AF402D42C99CE020064BEB1 /* ReachabilityManagement.swift */,
+				7AF402D92C99DEE10064BEB1 /* NoInternetViewController.swift */,
+			);
+			path = InternetConnectionManager;
+			sourceTree = "<group>";
+		};
+		7AF402DC2C99DFBF0064BEB1 /* FavoritesViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7AFD3F722C992388007B53C0 /* FavoritesViewModel.swift */,
+			);
+			path = FavoritesViewModel;
+			sourceTree = "<group>";
+		};
+		7AFD3F692C990996007B53C0 /* FavoritesModule */ = {
+			isa = PBXGroup;
+			children = (
+				7AF402DC2C99DFBF0064BEB1 /* FavoritesViewModel */,
+				7AFD3F6F2C9909C5007B53C0 /* FavoritesManager */,
+				7AFD3F6E2C9909B6007B53C0 /* FavoritesVC */,
+			);
+			path = FavoritesModule;
+			sourceTree = "<group>";
+		};
+		7AFD3F6E2C9909B6007B53C0 /* FavoritesVC */ = {
+			isa = PBXGroup;
+			children = (
+				7AFD3F6A2C9909AD007B53C0 /* FavoritesVC.swift */,
+				7AFD3F6B2C9909AD007B53C0 /* FavoritesVC.xib */,
+			);
+			path = FavoritesVC;
+			sourceTree = "<group>";
+		};
+		7AFD3F6F2C9909C5007B53C0 /* FavoritesManager */ = {
+			isa = PBXGroup;
+			children = (
+				7AFD3F672C9905C3007B53C0 /* FavoritesManager.swift */,
+			);
+			path = FavoritesManager;
 			sourceTree = "<group>";
 		};
 		8B2047F3F7FC7EFAC7955AEA /* Pods */ = {
@@ -267,10 +354,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AFD3F6D2C9909AD007B53C0 /* FavoritesVC.xib in Resources */,
 				7AAFD5182C97E72700E0D850 /* LaunchScreen.storyboard in Resources */,
 				7AAFD5152C97E72700E0D850 /* Assets.xcassets in Resources */,
 				7AAFD5132C97E72600E0D850 /* Main.storyboard in Resources */,
 				7AAFD5322C97EFF000E0D850 /* RepositoryCell.xib in Resources */,
+				7A66564C2C98BE2F0068A793 /* NoDataView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,16 +412,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AFD3F6C2C9909AD007B53C0 /* FavoritesVC.swift in Sources */,
 				7ADB02452C9884F300CB4AF0 /* UINavigationBar+Extension.swift in Sources */,
 				7AAFD5102C97E72600E0D850 /* TrendingListVC.swift in Sources */,
+				7A6656532C98EBAA0068A793 /* UILabel+Extensions.swift in Sources */,
 				7AAFD5312C97EFF000E0D850 /* RepositoryCell.swift in Sources */,
 				7AAFD50C2C97E72600E0D850 /* AppDelegate.swift in Sources */,
 				7AAFD5272C97EC1000E0D850 /* NetworkManger.swift in Sources */,
 				7ADB02472C989A2200CB4AF0 /* JGProgressHUD+Extension.swift in Sources */,
+				7AFD3F682C9905C3007B53C0 /* FavoritesManager.swift in Sources */,
 				7AAFD53C2C98763700E0D850 /* Kingfisher+Extension.swift in Sources */,
 				7AAFD53A2C986F1700E0D850 /* UIViewController+Extension.swift in Sources */,
+				7AFD3F752C99241F007B53C0 /* UISearchBar+Extension.swift in Sources */,
+				7AFD3F712C9910FF007B53C0 /* Array+Extension.swift in Sources */,
 				7AAFD52B2C97EE8A00E0D850 /* TrendingListViewModel.swift in Sources */,
 				7AAFD50E2C97E72600E0D850 /* SceneDelegate.swift in Sources */,
+				7A6656512C98D91D0068A793 /* GitRepoDetailsVC.swift in Sources */,
+				7AFD3F732C992388007B53C0 /* FavoritesViewModel.swift in Sources */,
+				7A66564B2C98BE2F0068A793 /* NoDataView.swift in Sources */,
+				7AF402DA2C99DEE10064BEB1 /* NoInternetViewController.swift in Sources */,
+				7AF402D52C99CE020064BEB1 /* ReachabilityManagement.swift in Sources */,
+				7AF402D72C99D87C0064BEB1 /* BaseVC.swift in Sources */,
 				7ADB02432C98802000CB4AF0 /* CustomSegment.swift in Sources */,
 				7AAFD52D2C97EF2600E0D850 /* GitRepositoriesResponse.swift in Sources */,
 				7AAFD5352C97FBFB00E0D850 /* UITableView+Extension.swift in Sources */,

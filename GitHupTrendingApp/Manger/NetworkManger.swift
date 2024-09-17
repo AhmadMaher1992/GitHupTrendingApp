@@ -15,3 +15,4 @@ class NetworkManger {
     
     
 }
+// there is only one api so no need to create Complete Network Service Layer

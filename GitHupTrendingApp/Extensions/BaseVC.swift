@@ -27,27 +27,27 @@ class BaseVC: UIViewController {
     }
     
     func loadData() {
-            if Reachability.shared.isConnected {
-                // Fetch data from the internet
-            } else {
-                // Show offline view controller
-                showOfflineView()
-            }
+        if Reachability.shared.isConnected {
+            // Fetch data from the internet
+        } else {
+            // Show offline view controller
+            showOfflineView()
         }
-
-        @objc func checkInternetStatus() {
-            if !Reachability.shared.isConnected {
-                showOfflineView()
-            }
+    }
+    
+    @objc func checkInternetStatus() {
+        if !Reachability.shared.isConnected {
+            showOfflineView()
         }
-
-        func showOfflineView() {
-            let noInternetVC = NoInternetViewController()
-            noInternetVC.modalPresentationStyle = .fullScreen
-            present(noInternetVC, animated: true, completion: nil)
-        }
+    }
+    
+    func showOfflineView() {
+        let noInternetVC = NoInternetViewController()
+        noInternetVC.modalPresentationStyle = .fullScreen
+        present(noInternetVC, animated: true, completion: nil)
+    }
     //remove observer at deinitialization
     deinit {
-         NotificationCenter.default.removeObserver(self)
-     }
+        NotificationCenter.default.removeObserver(self)
+    }
 }
