@@ -153,7 +153,7 @@ extension FavoritesVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
            let dataCount = isSearching() ? filteredFavorites.count : favorites.count
-        let text = isSearching() ? TMText.No_Search_Result : TMText.No_Data_Found
+        let text = isSearching() ? TMText.No_Search_Result : TMText.No_Favourites_Selected
         let type: NoDataViewType  = isSearching() ? .searchType : .standardType
         self.showNoDataViewOnTableView(tableview: self.tableView, forItemsCount:  dataCount , title: text, type:  type, backGroundColor:  AppColors.ofWhite_Color)
            return dataCount
@@ -213,7 +213,9 @@ extension FavoritesVC: UITableViewDelegate {
 
 }
 
-
+//------------------------------------------
+// MARK: - UISearchResultsUpdating
+//------------------------------------------
 extension FavoritesVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {

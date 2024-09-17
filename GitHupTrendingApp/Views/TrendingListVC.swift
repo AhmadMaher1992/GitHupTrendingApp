@@ -358,11 +358,11 @@ extension TrendingListVC: RepositoryCellDelegate {
     
     func onFavoriteTapped(repository: GithupRepo) {
         if FavoritesManager.shared.isFavorite(repository) {
-            self.showAlert(message: "This repository is removed From favorites.")
+            self.showToast(message: "This repository is removed From favorites.")
             FavoritesManager.shared.removeFavorite(repository)
         } else {
             FavoritesManager.shared.addToFavorites(repository)
-            self.showAlert(message: "Repository added to favorites!")
+            self.showToast(message: "Repository added to favorites!")
         }
     }
     
@@ -374,3 +374,5 @@ extension TrendingListVC: RepositoryCellDelegate {
 enum Timeframe {
     case day, week, month
 }
+
+
