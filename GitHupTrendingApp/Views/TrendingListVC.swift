@@ -65,7 +65,7 @@ class TrendingListVC: UIViewController {
         viewModel.$repositories
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self = self else { return }
+                guard let self = self else { return }// to avoid retain cycle
                 self.tableView.reloadData()
             }
             .store(in: &viewModel.cancellables)
@@ -270,7 +270,8 @@ class TrendingListVC: UIViewController {
 
     @objc func favoritesButtonTapped() {
         print("DEBUG:☑️ Favorites button tapped ☑️")
-        
+        let vc = FavoritesVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -291,6 +292,7 @@ extension TrendingListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell: RepositoryCell = tableView.dequeueCell()
+        cell.delegate = self
         let repository = viewModel.repositories[indexPath.row]
         cell.configure(with: repository)
         return cell
@@ -343,6 +345,27 @@ extension TrendingListVC: UISearchResultsUpdating {
         resetPagination() // Reset pagination before performing the search
         fetchRepositories(timeframe: timeframe) // Fetch repositories based on the search query
     }
+    
+    
+    
+}
+
+//------------------------------------------
+// MARK: - Handle Favourites Selection
+//------------------------------------------
+extension TrendingListVC: RepositoryCellDelegate {
+    
+    
+    func onFavoriteTapped(repository: GithupRepo) {
+        if FavoritesManager.shared.isFavorite(repository) {
+            self.showAlert(message: "This repository is removed From favorites.")
+            FavoritesManager.shared.removeFavorite(repository)
+        } else {
+            FavoritesManager.shared.addToFavorites(repository)
+            self.showAlert(message: "Repository added to favorites!")
+        }
+    }
+    
     
     
     

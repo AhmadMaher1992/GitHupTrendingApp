@@ -8,13 +8,19 @@
 import UIKit
 
 protocol RepositoryCellDelegate: AnyObject {
-    func handleGitRepoFavorited(gitRepod: GithupRepo)
+    func onFavoriteTapped(repository: GithupRepo)
     
 }
 
 
 class RepositoryCell: UITableViewCell {
     
+    //------------------------------------------
+    // MARK: - properties
+    //------------------------------------------
+    var repository: GithupRepo?
+    weak var delegate: RepositoryCellDelegate?
+    var onFavoriteTapped: ((GithupRepo) -> Void)?
     
     //------------------------------------------
     // MARK: -IBOutlets
@@ -47,20 +53,32 @@ class RepositoryCell: UITableViewCell {
     // MARK: -IBActions
     //------------------------------------------
     
-    
+    // i use two way to handle favourites (closure and protocol)
     @IBAction func favouriteRepoBtnAction(_ sender: UIButton) {
-        
+        if let repo = repository {
+            delegate?.onFavoriteTapped(repository: repo)
+            onFavoriteTapped?(repo) // Trigger the favorite action callback
+            updateFavoriteButtonImage() // Update the button image after the action
+           
+        }
         
     }
     
-    
+    private func updateFavoriteButtonImage() {
+        if let repo = repository {
+            let isFavorite = FavoritesManager.shared.isFavorite(repo)
+            let imageName = isFavorite ? AppImages.filledStar : AppImages.emptyStar // Change to your actual image names
+            favouriteRepoBtn.setImage(UIImage(named: imageName), for: .normal)
+        }
+    }
+
     
     //------------------------------------------
     // MARK: - configure
     //------------------------------------------
     
     func configure(with repository: GithupRepo) {
-        
+        self.repository = repository
         titleLabel.text = repository.owner?.login ?? ""
         nameLabel.text = repository.name ?? ""
         descriptionLabel.text = repository.description ?? "No description available"
@@ -72,6 +90,12 @@ class RepositoryCell: UITableViewCell {
         
         if let urlString = repository.owner?.avatar_url {
             self.avatarImageView.setImage(with: urlString)
+        }
+        //check favourites REPO
+        if FavoritesManager.shared.isFavorite(repository) {
+            self.favouriteRepoBtn.setImage( UIImage(named: AppImages.filledStar) , for: .normal)
+        } else {
+            self.favouriteRepoBtn.setImage( UIImage(named: AppImages.emptyStar) , for: .normal)
         }
     }
     

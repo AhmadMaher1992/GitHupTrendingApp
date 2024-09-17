@@ -1,8 +1,8 @@
 //
 //  NoDataView.swift
-//  MVVM Template
+//  GitHupTrendingApp
 //
-//  Created by Sobhan Asim on 17/07/2022.
+//  Created by Ahmad Eisa on 16/09/2024.
 //
 
 import Foundation
@@ -11,7 +11,6 @@ import UIKit
 enum NoDataViewType {
     case standardType
     case searchType
-    case loadingType
 }
 
 
@@ -52,16 +51,13 @@ class NoDataView : UIView {
         
         if type == .standardType
         {
-            noDataViewImage.image = UIImage(named: "cloud-computing")
-        }
-        else if type == .searchType
-        {
-            noDataViewImage.image = UIImage(named: "no-results")
+            noDataViewImage.image = UIImage(named: AppImages.noInternet_Img)
         }
         else
         {
-            noDataViewImage.image = UIImage(named: "loading")
+            noDataViewImage.image = UIImage(named: AppImages.noSearchResult_Img)
         }
+       
         
     }
     
