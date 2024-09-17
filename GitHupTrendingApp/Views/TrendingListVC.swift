@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrendingListVC: UIViewController {
+class TrendingListVC: BaseVC {
     
     //------------------------------------------
     // MARK: - properties
