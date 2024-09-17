@@ -35,6 +35,7 @@ class FavoritesVC: UIViewController {
         setupNavigationBar()
         setupRefreshControl()
         setupSearchController()
+        self.hideKeyboardWhenTappedAround()
     }
 
 

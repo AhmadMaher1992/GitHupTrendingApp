@@ -54,6 +54,7 @@ class TrendingListVC: UIViewController {
         setupTableView()
         setupRefreshControl()
         dataBinding()
+        self.hideKeyboardWhenTappedAround()
     }
     
     
